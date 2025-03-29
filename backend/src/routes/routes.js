@@ -7,9 +7,8 @@ const router = Router();
 
 // Define a GET endpoint for retrieving the external API data
 router.get('/', async(req,res) => {
-    res.send("Hi");
-    
-    
+    const data = apiservice.getSpecificData();
+    res.send(data + " Hello");
 });
 
 export default router;

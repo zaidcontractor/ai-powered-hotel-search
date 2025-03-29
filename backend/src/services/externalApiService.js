@@ -5,11 +5,10 @@ import axios from 'axios';
 const BASE_URL = 'https://api.example.com'; // replace with the actual API base URL
 const API_KEY = process.env.API_KEY;
 
-async function getSpecificData(params) {
+async function getSpecificData() {
   try {
-    // Append your API key to the request parameters
-    const response = await axios.get(`${BASE_URL}/desired-endpoint`, {
-      params: { ...params, apiKey: API_KEY },
+    const response = await axios.get(`${BASE_URL}/shopping/hotel-offers`, {
+      params: {hotelIds:["MCLONGHM"], apiKey: API_KEY },
     });
     return response.data;
   } catch (error) {
