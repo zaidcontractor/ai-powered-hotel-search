@@ -5,10 +5,11 @@ import Result from "../components/Result.jsx";
 function Home() {
   return (
     <>
-      <div className="main-flex">
-        <Result />
-        <Result />
-        <Result />
+      <div className="result-container">
+        <div className="main-flex">
+          <Result />
+          <Result />
+        </div>
       </div>
     </>
   );
