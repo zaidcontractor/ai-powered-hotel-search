@@ -4,8 +4,8 @@ function Results() {
   return (
     <div className="result-box">
       <div className="result-left">
-        <h3>Grand Central Hotel</h3>
-        <h5>230 E 51st St, New York, NY 10022</h5>
+        <h3>The Manhattan at Times Square Hotel</h3>
+        <h5>790 7th Ave, New York, NY 10019</h5>
         <div className="match-score">Match: 92%</div>
       </div>
       <div className="result-right">
