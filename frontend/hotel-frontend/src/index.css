@@ -13,9 +13,18 @@
     --color-black-05: #E8E6E9;
 }
 
+
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Murecho", sans-serif;
+    background-color: var(--color-black-05);
+    color: var(--color-black);
+    padding: 20px;
 }
 
 h1 {
@@ -28,7 +37,7 @@ h1 {
 }
 
 h2 {
-    /* H1 */
+    /* H2 */
     font-family: "Gabarito", sans-serif;
     font-size: 85px;
     font-style: normal;
@@ -37,36 +46,46 @@ h2 {
 }
 
 h3 {
-    /* H1 */
+    /* H3 */
     font-family: "Gabarito", sans-serif;
     font-size: 60px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 200;
     line-height: 120%;
 }
 
 h4 {
-    /* H1 */
+    /* H4 */
     font-family: "Gabarito", sans-serif;
     font-size: 50px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 200;
     line-height: 120%;
 }
 
 h5 {
-    /* H1 */
+    /* H5 */
     font-family: "Gabarito", sans-serif;
     font-size: 35px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 100;
     line-height: 120%;
 }
 
 p {
-    font-family: "Murecho", sans-serif;
     font-size: 24px;
     font-style: normal;
-    font-weight: 400;
     line-height: 120%;
+}
+
+@media (max-width: 1000px) {
+    h1 {
+        font-size: 75px;
+    }
+}
+
+@media (max-width: 800px) {
+    h1 {
+        font-size: 50px;
+    }
 }

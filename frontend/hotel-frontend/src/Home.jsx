@@ -8,7 +8,7 @@ function App() {
     <>
       <div className="main-flex">
         <div className="main">
-          <h1>AI Powered Hotel Search</h1>
+          <h1>HotelSearch</h1>
           <br></br>
           <textarea
             className="prompt"
