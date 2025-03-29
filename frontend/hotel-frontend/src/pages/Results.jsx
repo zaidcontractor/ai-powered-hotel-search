@@ -1,12 +1,15 @@
 import { useState } from "react";
-import "./Home.css";
-import Result from '../components/Result.jsx';
+import Result from "../components/Result.jsx";
+//import "../styles/Results.css";
 
 function Home() {
-
   return (
     <>
-      <Result/>
+      <div className="main-flex">
+        <Result />
+        <Result />
+        <Result />
+      </div>
     </>
   );
 }

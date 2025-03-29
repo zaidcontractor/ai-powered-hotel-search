@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Murecho');
+@import url('https://fonts.googleapis.com/css2?family=Gabarito');
+
+.v-flex {
+    display: flex;
+    flex-direction: column;
+}

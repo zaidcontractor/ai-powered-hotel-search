@@ -18,14 +18,6 @@
     animation: waveAnimation 2.5s ease-in-out infinite;
 }
 
-.main-flex {
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-}
-
 .title {
     margin-bottom: 30px;;
 }
