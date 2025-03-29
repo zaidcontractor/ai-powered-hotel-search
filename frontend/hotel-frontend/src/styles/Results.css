@@ -20,6 +20,7 @@
     flex-direction: row;
     gap: 30px; 
     border-left: 10px solid var(--color-primary);
+    margin-bottom: 10px;
 }
 
 
