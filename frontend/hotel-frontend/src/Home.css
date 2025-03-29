@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Murecho');
 @import url('https://fonts.googleapis.com/css2?family=Gabarito');
 
+@keyframes waveAnimation {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.wave-letter {
+    display: inline-block;
+    animation: waveAnimation 2.5s ease-in-out infinite;
+}
 
 .main-flex {
     display:flex;
@@ -47,7 +63,19 @@
 }
 
 .prompt:focus {
-    background-color: var(--color-white);
+    font-family: "Murecho", sans-serif;
+    font-size: 16px;
+    margin-top: 16px;
+    width: 100%;
+    min-height: 175px;
+    padding: 15px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 20px;
+    background-color: var(--color-white);    
+    color: var(--color-black);
+    transition: 0.3s;
+    resize: none
+
 }
 
 @media (max-width: 768px) {
