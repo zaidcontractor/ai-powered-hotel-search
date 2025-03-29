@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Murecho');
+@import url('https://fonts.googleapis.com/css2?family=Gabarito');
+
+
+.main-flex {
+    display:flex;
+    justify-content:center;
+}
+
+.main {
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.prompt {
+    padding: 10px;
+}
