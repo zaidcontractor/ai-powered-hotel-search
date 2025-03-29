@@ -10,6 +10,13 @@ function Home() {
           <Result />
           <Result />
           <Result />
+          <Result />
+          <Result />
+          <Result />
+          <Result />
+          <Result />
+          <Result />
+          <Result />
         </div>
       </div>
     </>
