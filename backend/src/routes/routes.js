@@ -1,10 +1,12 @@
-// // server/routes/dataRoutes.js
-// const express = require('express');
-// const { fetchData } = require('../controllers/dataController');
+// server/routes/dataRoutes.js
+import { Router } from 'express';
+// import { fetchData } from '../controllers/dataController';
 
-// const router = express.Router();
+const router = Router();
 
-// // Define a GET endpoint for retrieving the external API data
-// router.get('/data', fetchData);
+// Define a GET endpoint for retrieving the external API data
+router.get('/', async(req,res) => {
+    res.send("Hi")
+});
 
-// module.exports = router;
+export default router;

@@ -1,5 +1,5 @@
 // server/controllers/dataController.js
-const { getSpecificData } = require('../services/externalApiService');
+import { getSpecificData } from '../services/externalApiService';
 
 async function fetchData(req, res) {
   try {
@@ -12,4 +12,4 @@ async function fetchData(req, res) {
   }
 }
 
-module.exports = { fetchData };
+export default { fetchData };

@@ -1,6 +1,7 @@
 {
   "name": "hoohacks2025-backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "Backend for HooHacks 2025 project",
   "main": "src/server.js",
   "scripts": {
