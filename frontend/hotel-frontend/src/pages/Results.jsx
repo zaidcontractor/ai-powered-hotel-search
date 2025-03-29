@@ -9,6 +9,7 @@ function Home() {
         <div className="main-flex">
           <Result />
           <Result />
+          <Result />
         </div>
       </div>
     </>
