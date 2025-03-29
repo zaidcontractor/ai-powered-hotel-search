@@ -7,7 +7,7 @@ const router = Router();
 // Define a GET endpoint for retrieving the external API data
 router.get('/', async (req, res) => {
   try {
-    const data = await apiservice.getSpecificData();
+    const data = await apiservice.getMultiHotelOffers();
     res.send(data);
   } catch (error) {
     console.error('Error in GET /:', error);
