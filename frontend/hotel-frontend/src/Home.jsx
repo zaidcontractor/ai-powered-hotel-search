@@ -7,16 +7,17 @@ function App() {
   return (
     <>
       <div className="main-flex">
-        <div className="main">
-          <h1>HotelSearch</h1>
-          <br></br>
+        <div className="main main-item">
+          <h1 className="title">Hotel Search</h1>
+          <p className='main-item'>Tell us the way. We'll find your stay.</p>
           <textarea
-            className="prompt"
+            className="prompt main-item"
             name="prompt"
-            placeholder="Enter your prompt"
+            placeholder="Enter your travel preferences..."
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
             required
           ></textarea>
-          <br></br>
         </div>
       </div>
     </>
