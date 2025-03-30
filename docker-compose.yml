@@ -1,4 +1,18 @@
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
   backend:
     build: ./backend
     ports:
@@ -8,10 +22,13 @@ services:
       - MONGODB_URI=mongodb://mongodb:27017/hoohacks2025
       - API_KEY=HwTLmOnfitsTqOzS0e7RO9g5EoKWe3f7
       - API_SECRET=fD4Kc5Zr0gPkM7bt
+      - CORS_ORIGIN=http://localhost:3000
     volumes:
       - ./backend:/app
       - /app/node_modules
     command: npm run dev
+    depends_on:
+      - mongodb
     networks:
       - app-network
 
