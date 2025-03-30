@@ -20,7 +20,14 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
-    "mongoose": "^8.1.1"
+    "mongoose": "^8.1.1",
+    "@tsparticles/all": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
+    "react-router-dom": "^7.4.1",
+    "react-tsparticles": "^2.12.2",
+    "tsparticles": "^3.8.1",
+    "tsparticles-engine": "^2.12.0",
+    "tsparticles-slim": "^2.12.0"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

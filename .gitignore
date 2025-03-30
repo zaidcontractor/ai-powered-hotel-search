@@ -1,5 +1,27 @@
-.env
+# System files
+.DS_Store
+Thumbs.db
 
+# Node.js dependencies
 node_modules/
 
+# Build directories
+build/
+dist/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Log files
+*.log
+
+# Editor settings
+.vscode/
+.idea/
+
+.env
+
 package-lock.json
+
+firebaseAdminConfig.json
