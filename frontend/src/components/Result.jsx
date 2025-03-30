@@ -11,7 +11,7 @@ function Result({ name, address, countryCode, lastUpdate }) {
       <div className="result-right">
         <h4>Additional Information</h4>
         <ul className="description-list">
-          <li>Last Updated: {new Date(lastUpdate).toLocaleDateString()}</li>
+          <li>Last Updated on {new Date(lastUpdate).toLocaleDateString()}</li>
         </ul>
       </div>
     </div>

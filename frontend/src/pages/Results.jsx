@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Result from "../components/Result.jsx";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
@@ -8,25 +8,43 @@ function Results() {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const particlesInit = async (engine) => {
+  const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
+  }, []);
+
+  // Hardcoded response
+  const response = {
+    success: true,
+    hotels: [
+      {
+        chainCode: "SC",
+        iataCode: "JFK",
+        dupeId: 700179772,
+        name: "WASHINGTON BURGESS INN",
+        hotelId: "SCRICWBI",
+        geoCode: { latitude: 37.52402, longitude: -76.82526 },
+        address: { countryCode: "US" },
+        lastUpdate: "2023-06-15T09:56:35",
+      },
+      {
+        chainCode: "AL",
+        iataCode: "JFK",
+        dupeId: 700102155,
+        name: "ALOFT RICHMOND WEST",
+        hotelId: "ALRIC139",
+        geoCode: { latitude: 37.6473, longitude: -77.602 },
+        address: { countryCode: "US" },
+        lastUpdate: "2024-08-12T06:05:15",
+      },
+    ],
   };
 
-  // Fetch hotel data from backend
   useEffect(() => {
-    const fetchHotels = async () => {
-      try {
-        const response = await fetch("http://localhost:5001/hotel");
-        const data = await response.json();
-        setHotels(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching hotels:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchHotels();
+    // Simulate API delay
+    setTimeout(() => {
+      setHotels(response.hotels);
+      setLoading(false);
+    }, 1000);
   }, []);
 
   return (

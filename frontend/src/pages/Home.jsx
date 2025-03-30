@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,9 @@ function Home() {
   const title = "SuiteSpot";
   const navigate = useNavigate();
 
-  const particlesInit = async (engine) => {
+  const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
-  };
+  }, []);
 
   const handleSearch = () => {
     if (prompt.trim() === "") {
