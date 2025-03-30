@@ -57,8 +57,7 @@ h3{
     gap: 30px; 
     border-left: 40px solid var(--color-primary);
     margin-bottom: 10px;
-    transform: scale(1.02);
-    transition: transform 0.3s;
+    transition: 0.3s;
 }
 
 .result-left {
