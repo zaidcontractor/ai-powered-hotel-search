@@ -20,7 +20,16 @@ app.use(express.json());
 
 // Root route
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to HooHacks 2025 API' });
+  res.json({ 
+    message: 'Welcome to HooHacks 2025 API',
+    availableEndpoints: {
+      '/': 'This documentation',
+      '/api/health': 'Health check endpoint',
+      '/api/hotel': 'Get hotel offers (default test data)',
+      '/api/hotel/test': 'Get filtered hotel offers for NYC',
+      '/api/hotel/city/:cityCode': 'Get hotels by city code (e.g., /api/hotel/city/NYC)'
+    }
+  });
 });
 
 // Health check endpoint
