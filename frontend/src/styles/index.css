@@ -83,13 +83,3 @@ p {
         font-size: 50px;
     }
 }
-
-.main-flex {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    width: 100vw;
-    min-height: 100vh;
-}

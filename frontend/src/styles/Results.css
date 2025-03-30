@@ -12,6 +12,16 @@ h3{
     color: var(--color-primary);
 }
 
+.main-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100vw;
+    min-height: 100vh;
+}
+
 .result-container {
     display: flex;
     flex-direction: column;
@@ -144,5 +154,4 @@ h3{
         font-size: 16px;
     }
 }
-
 
