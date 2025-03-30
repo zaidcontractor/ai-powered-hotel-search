@@ -20,13 +20,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Murecho", sans-serif;
-    background-color: var(--color-black-05);
-    color: var(--color-black);
-    padding: 20px;
-}
-
 h1 {
     /* H1 */
     font-family: "Gabarito", sans-serif;
@@ -73,6 +66,7 @@ h5 {
 }
 
 p {
+    /* Paragraph */
     font-size: 20px;
     font-style: normal;
     line-height: 120%;
@@ -91,11 +85,11 @@ p {
 }
 
 .main-flex {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     padding: 20px;
-    width: 100%;
-    max-width: 1200px;
+    width: 100vw;
+    min-height: 100vh;
 }

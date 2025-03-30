@@ -1,12 +1,41 @@
 import { useState } from "react";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
 import "../styles/Home.css";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
-  const title = "Hotel Search";
+  const title = "SuiteSpot";
+
+  const particlesInit = async (engine) => {
+    await loadSlim(engine);
+  };
 
   return (
     <>
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fullScreen: { enable: true, zIndex: -1 },
+          background: { color: "#190025" },
+          particles: {
+            number: { value: 50 },
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: { value: 3 },
+            move: { enable: true, speed: 1 },
+            color: { value: "#FFC844" },
+            links: {
+              enable: true,
+              distance: 150,
+              color: "#FFC844",
+              opacity: 0.5,
+              width: 1,
+            },
+          },
+        }}
+      />
       <div className="main-flex">
         <div className="main main-item">
           <h1>
@@ -20,7 +49,7 @@ function Home() {
               </span>
             ))}
           </h1>
-          <p className="main-item">Tell us the way. We'll find your stay.</p>
+          <h5 className="main-item">Tell us the way. We'll find your stay.</h5>
           <textarea
             className="prompt main-item"
             name="prompt"
