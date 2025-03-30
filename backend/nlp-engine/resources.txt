@@ -1,0 +1,6 @@
+NLP-Engine:
+    * Free LLM API Resources: https://github.com/cheahjs/free-llm-api-resources?tab=readme-ov-file
+    * CloudFlare Workers AI: https://developers.cloudflare.com/workers-ai/
+    * CloudFlare Pricing: https://developers.cloudflare.com/workers-ai/platform/pricing/#free-allocation
+    * CloudFlare AI JSON Mode: https://developers.cloudflare.com/workers-ai/json-mode/
+    * CloudFlare llama-3-8b-instruct: https://developers.cloudflare.com/workers-ai/models/llama-3-8b-instruct/

@@ -2,10 +2,10 @@
   "name": "hotel-search-app",
   "version": "1.0.0",
   "description": "Hotel search app with natural language processing",
-  "main": "backend/server.js",
+  "main": "backend/nlp-engine/server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js",
+    "start": "node backend/nlp-engine/server.js", 
+    "server": "nodemon backend/nlp-engine/server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "install-client": "cd client && npm install",
@@ -20,14 +20,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
-    "mongoose": "^8.1.1",
-    "@tsparticles/all": "^3.8.1",
-    "@tsparticles/react": "^3.0.0",
-    "react-router-dom": "^7.4.1",
-    "react-tsparticles": "^2.12.2",
-    "tsparticles": "^3.8.1",
-    "tsparticles-engine": "^2.12.0",
-    "tsparticles-slim": "^2.12.0"
+    "mongoose": "^8.1.1"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

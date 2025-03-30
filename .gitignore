@@ -22,4 +22,6 @@ __pycache__/
 
 .env
 
+package-lock.json
+
 firebaseAdminConfig.json
