@@ -2,8 +2,6 @@
 import { Router } from "express";
 import apiservice from "../services/externalApiService.js";
 import Hotel from "../models/Hotel.js";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import admin from "../services/firebase.js";
 
 const router = Router();
 
