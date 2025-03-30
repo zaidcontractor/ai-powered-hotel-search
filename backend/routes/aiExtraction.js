@@ -36,9 +36,13 @@ You are extracting structured data for a hotel search request. **This is a state
   "checkOutDate": "yyy-mm-dd",
   "numRooms": *integer*,
   "guestCount": *integer*,
+  "roomCapacity": *integer*,
   "perNightPriceLow": *integer*,
   "perNightPriceHigh": *integer*,
   "guestRelationship": *string*
+  "boardType": *string*,
+  "hotelSource": *string*,
+  accessibilityNeeds: *array of strings*
 }
 
 ### **Rules for Extraction**
@@ -64,6 +68,10 @@ You are extracting structured data for a hotel search request. **This is a state
    - Extract exact values.
    - If unspecified, default to \`1\`.
 
+   **Room Capacity**
+   - Extract exact values.
+   - If unspecified, default to \`1\`.
+
     **Price Range (perNightPriceLow / perNightPriceHigh)**
    - Extract exactly as stated. **Do NOT round, modify, or assume missing values.**
    - Example: "Budget is $xxx-$zzz per night." → { "perNightPriceLow": xxx, "perNightPriceHigh": zzz }.
@@ -74,6 +82,15 @@ You are extracting structured data for a hotel search request. **This is a state
    - If 'with family' → "FAMILY".
    - If 'business trip' → "BUSINESS".
    - If unspecified, return "".
+
+    **Board Type**
+   - Choose from "ROOM_ONLY", "BREAKFAST", "HALF_BOARD", "FULL_BOARD". If nothing relevant mentioned, default to empty string.
+
+    **Hotel Source**
+   - Choose from values: "BEDBANK", "DIRECTCHAIN", "ALL". If nothing relevant mentioned, default to "ALL".
+
+   **Accessibiliy Needs**
+   - Make an array of strings of all major accessibility needs (really short sentence, 3-4 words max). If nothing relevant mentioned, default to an empty array.
 
 ### **Critical Instructions**
     **DO NOT** hallucinate missing values. If a parameter is absent, return an empty or default value.  
