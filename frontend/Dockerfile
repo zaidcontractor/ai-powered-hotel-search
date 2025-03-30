@@ -1,18 +1,24 @@
-FROM node:16-alpine
+FROM node:16.20.2 as builder
 
 WORKDIR /app
 
 # Copy package files first
 COPY package.json .
 COPY package-lock.json* .
-RUN npm install
+
+# Clean install dependencies
+RUN npm install --legacy-peer-deps
 
 # Copy the rest of the application
-COPY public/ ./public/
-COPY src/ ./src/
-COPY .env* ./
+COPY . .
 
-EXPOSE 3000
-ENV CI=true
+# Build the application
+ENV NODE_ENV=production
+RUN npm run build
 
-CMD ["npm", "start"]
+# Use nginx for serving
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80

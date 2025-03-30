@@ -2,12 +2,19 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "3000:80"  # Map container's 80 to host's 3000
     environment:
-      - REACT_APP_API_URL=http://localhost:5000
+      - REACT_APP_API_URL=http://backend-service:5000/api
       - WDS_SOCKET_PORT=0
     depends_on:
       - backend
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   backend:
     build: ./backend
@@ -18,6 +25,8 @@ services:
       - MONGODB_URI=mongodb://mongodb:27017/hoohacks2025
     depends_on:
       - mongodb
+    networks:
+      - app-network
 
   mongodb:
     image: mongo:latest
@@ -25,6 +34,12 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   mongodb_data:
