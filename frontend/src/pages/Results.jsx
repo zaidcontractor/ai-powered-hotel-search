@@ -1,13 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Result from "../components/Result.jsx";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
-//import "../styles/Results.css";
+import "../styles/Results.css";
 
-function Home() {
+function Results() {
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const particlesInit = async (engine) => {
     await loadSlim(engine);
   };
+
+  // Fetch hotel data from backend
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        const response = await fetch("http://localhost:5001/hotel");
+        const data = await response.json();
+        setHotels(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching hotels:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchHotels();
+  }, []);
 
   return (
     <>
@@ -29,19 +49,24 @@ function Home() {
       />
       <div className="result-container">
         <h3>The Best Hotels for You!</h3>
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
+        {loading ? (
+          <p>Loading hotels...</p>
+        ) : hotels.length > 0 ? (
+          hotels.map((hotel) => (
+            <Result
+              key={hotel.hotelId}
+              name={hotel.name}
+              address={`Latitude: ${hotel.geoCode.latitude}, Longitude: ${hotel.geoCode.longitude}`}
+              countryCode={hotel.address.countryCode}
+              lastUpdate={hotel.lastUpdate}
+            />
+          ))
+        ) : (
+          <p>No hotels found.</p>
+        )}
       </div>
     </>
   );
 }
 
-export default Home;
+export default Results;

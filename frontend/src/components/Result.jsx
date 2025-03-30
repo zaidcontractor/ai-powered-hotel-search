@@ -1,31 +1,21 @@
 import "../styles/Results.css";
 
-function Results() {
+function Result({ name, address, countryCode, lastUpdate }) {
   return (
     <div className="result-box">
       <div className="result-left">
-        <h3>The Manhattan at Times Square Hotel</h3>
-        <h5>790 7th Ave, New York, NY 10019</h5>
-        <div className="match-score">Match: 92%</div>
+        <h3>{name}</h3>
+        <h5>{address}</h5>
+        <div className="match-score">Country Code: {countryCode}</div>
       </div>
       <div className="result-right">
-        <h4>What matches?</h4>
+        <h4>Additional Information</h4>
         <ul className="description-list">
-          <li>Walkable to 5th Avenue</li>
-          <li>Can fit 4 people</li>
-          <li>Low noise area, where sleep disturbance is unlikely</li>
-          <li>Pet friendly</li>
-        </ul>
-        <h4>What doesn't match?</h4>
-        <ul className="description-list">
-          <li>Walkable to 5th Avenue</li>
-          <li>Can fit 4 people</li>
-          <li>Low noise area, where sleep disturbance is unlikely</li>
-          <li>Pet friendly</li>
+          <li>Last Updated: {new Date(lastUpdate).toLocaleDateString()}</li>
         </ul>
       </div>
     </div>
   );
 }
 
-export default Results;
+export default Result;
