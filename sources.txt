@@ -5,6 +5,13 @@ NLP-Engine:
     * CloudFlare AI JSON Mode: https://developers.cloudflare.com/workers-ai/json-mode/
     * CloudFlare llama-3-8b-instruct: https://developers.cloudflare.com/workers-ai/models/llama-3-8b-instruct/
 
+Frontend:
+    * Particles.JS background: https://vincentgarreau.com/particles.js/
+
+API Ingestion:
+    * Top 10 Hotel Search APIs: https://nordicapis.com/top-10-hotel-apis-a-comprehensive-overview-to-find-your-best-fit/ 
+    * Amadeus Hotel Search API: https://developers.amadeus.com/self-service/category/hotels/api-doc/hotel-search 
+
 GenAI Tools Used:
     * Anthropic Claude, OpenAI ChatGPT-4, and Perplexity 
     * Used for coming up with advanced feature ideas for our web app, for debugging purposes, and for creating boilerplate code.
