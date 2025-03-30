@@ -4,11 +4,22 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: true, // listen on all addresses
+    host: '0.0.0.0',
     port: 3000,
-    strictPort: true, // fail if port is in use
+    strictPort: true,
     watch: {
-      usePolling: true // needed for some docker setups
+      usePolling: true
+    },
+    hmr: {
+      port: 24678,
+      clientPort: 24678
+    },
+    proxy: {
+      '/api': {
+        target: 'http://backend:5000',
+        changeOrigin: true,
+        secure: false,
+      }
     }
   },
   build: {

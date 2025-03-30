@@ -10,9 +10,11 @@ let tokenExpiration = null;
 
 async function getAccessToken() {
   try {
+    if (!process.env.API_KEY || !process.env.API_SECRET) {
+      throw new Error('API credentials are not configured. Please check your .env file.');
+    }
+
     console.log('Getting new access token...');
-    console.log('API Key:', process.env.API_KEY);
-    console.log('API Secret:', process.env.API_SECRET ? '***present***' : '***missing***');
     
     const response = await axios.post(AUTH_URL,
       qs.stringify({
@@ -25,8 +27,11 @@ async function getAccessToken() {
       }
     });
     
+    if (!response.data.access_token) {
+      throw new Error('No access token received from authentication server');
+    }
+    
     accessToken = response.data.access_token;
-    // Set expiration to 30 minutes from now (token typically lasts 30 minutes)
     tokenExpiration = Date.now() + (29 * 60 * 1000);
     console.log('Successfully obtained new access token');
     return accessToken;
@@ -34,9 +39,13 @@ async function getAccessToken() {
     console.error('Token Error:', {
       message: error.message,
       response: error.response?.data,
-      status: error.response?.status
+      status: error.response?.status,
+      credentials: {
+        apiKeyPresent: !!process.env.API_KEY,
+        apiSecretPresent: !!process.env.API_SECRET
+      }
     });
-    throw new Error('Failed to get access token: ' + error.message);
+    throw new Error(`Failed to get access token: ${error.response?.data?.error_description || error.message}`);
   }
 }
 

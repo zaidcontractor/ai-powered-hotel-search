@@ -7,45 +7,83 @@ import "../styles/Results.css";
 function Results() {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
   }, []);
 
-  // Hardcoded response
-  const response = {
-    success: true,
-    hotels: [
-      {
-        chainCode: "SC",
-        iataCode: "JFK",
-        dupeId: 700179772,
-        name: "WASHINGTON BURGESS INN",
-        hotelId: "SCRICWBI",
-        geoCode: { latitude: 37.52402, longitude: -76.82526 },
-        address: { countryCode: "US" },
-        lastUpdate: "2023-06-15T09:56:35",
-      },
-      {
-        chainCode: "AL",
-        iataCode: "JFK",
-        dupeId: 700102155,
-        name: "ALOFT RICHMOND WEST",
-        hotelId: "ALRIC139",
-        geoCode: { latitude: 37.6473, longitude: -77.602 },
-        address: { countryCode: "US" },
-        lastUpdate: "2024-08-12T06:05:15",
-      },
-    ],
+  const fetchHotels = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const cityCode = "NYC"; // Changed from JFK to NYC (New York City code)
+      
+      // Use the full URL to help with debugging
+      const apiUrl = `${import.meta.env.VITE_API_URL || ''}/hotel/city/${cityCode}`;
+      console.log('Fetching from:', apiUrl);
+      
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      console.log('Response status:', response.status);
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('API Error:', errorData);
+        throw new Error(errorData.message || 'Failed to fetch hotels');
+      }
+
+      const data = await response.json();
+      console.log('API Response:', data);
+      
+      const hotelsList = data.data || [];
+      setHotels(hotelsList);
+    } catch (err) {
+      console.error('Error details:', err);
+      setError(err.message || 'Failed to fetch hotels');
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    // Simulate API delay
-    setTimeout(() => {
-      setHotels(response.hotels);
-      setLoading(false);
-    }, 1000);
+    fetchHotels();
   }, []);
+
+  if (error) {
+    return (
+      <>
+        <Particles
+          id="tsparticles"
+          init={particlesInit}
+          options={{
+            fullScreen: { enable: true, zIndex: -1 },
+            background: { color: "#190025" },
+            particles: {
+              number: { value: 50 },
+              shape: { type: "circle" },
+              opacity: { value: 0.5 },
+              size: { value: 10 },
+              move: { enable: true, speed: 1 },
+              color: { value: "#FFC844" },
+            },
+          }}
+        />
+        <div className="result-container">
+          <h3>Oops! Something went wrong</h3>
+          <p className="error-message">{error}</p>
+          <button className="search-button" onClick={fetchHotels}>
+            Try Again
+          </button>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -74,9 +112,9 @@ function Results() {
             <Result
               key={hotel.hotelId}
               name={hotel.name}
-              address={`Latitude: ${hotel.geoCode.latitude}, Longitude: ${hotel.geoCode.longitude}`}
-              countryCode={hotel.address.countryCode}
-              lastUpdate={hotel.lastUpdate}
+              address={`${hotel.geoCode ? `Lat: ${hotel.geoCode.latitude}, Long: ${hotel.geoCode.longitude}` : 'Location not available'}`}
+              countryCode={hotel.address?.countryCode || 'N/A'}
+              lastUpdate={hotel.lastUpdate || new Date().toISOString()}
             />
           ))
         ) : (

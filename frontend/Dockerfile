@@ -1,24 +1,17 @@
-FROM node:16.20.2 as builder
+FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package files first
-COPY package.json .
-COPY package-lock.json* .
+# Install dependencies first for better caching
+COPY package*.json ./
+RUN npm install
 
-# Clean install dependencies
-RUN npm install --legacy-peer-deps
-
-# Copy the rest of the application
+# Copy the rest of the application (will be overridden by volume mount)
 COPY . .
 
-# Build the application
-ENV NODE_ENV=production
-RUN npm run build
+# Expose both the Vite dev server port
+EXPOSE 3000 
+EXPOSE 24678
 
-# Use nginx for serving
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
+# Start Vite dev server with host configuration
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
