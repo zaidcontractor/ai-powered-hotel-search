@@ -4,7 +4,7 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 //import "../styles/Results.css";
 
-function Home() {
+function Results() {
   const particlesInit = async (engine) => {
     await loadSlim(engine);
   };
@@ -44,4 +44,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Results;
