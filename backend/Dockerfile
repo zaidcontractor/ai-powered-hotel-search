@@ -2,13 +2,17 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-# Copy only package files first
-COPY package.json .
-COPY package-lock.json* .
+# Install nodemon globally
+RUN npm install -g nodemon
+
+# Copy package files
+COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the application
+# Copy source code
 COPY . .
 
 EXPOSE 5000
-CMD ["npm", "start"]
+
+# Use nodemon for hot reloading
+CMD ["nodemon", "src/server.js"]

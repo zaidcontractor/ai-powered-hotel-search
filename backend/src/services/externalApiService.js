@@ -6,9 +6,14 @@ const BASE_URL_V3 = 'https://test.api.amadeus.com/v3';
 const AUTH_URL = 'https://test.api.amadeus.com/v1/security/oauth2/token';
 
 let accessToken = null;
+let tokenExpiration = null;
 
 async function getAccessToken() {
   try {
+    console.log('Getting new access token...');
+    console.log('API Key:', process.env.API_KEY);
+    console.log('API Secret:', process.env.API_SECRET ? '***present***' : '***missing***');
+    
     const response = await axios.post(AUTH_URL,
       qs.stringify({
         grant_type: 'client_credentials',
@@ -19,18 +24,33 @@ async function getAccessToken() {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    return response.data.access_token;
+    
+    accessToken = response.data.access_token;
+    // Set expiration to 30 minutes from now (token typically lasts 30 minutes)
+    tokenExpiration = Date.now() + (29 * 60 * 1000);
+    console.log('Successfully obtained new access token');
+    return accessToken;
   } catch (error) {
-    console.error('Error getting access token:', error.message);
-    throw error;
+    console.error('Token Error:', {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status
+    });
+    throw new Error('Failed to get access token: ' + error.message);
   }
 }
 
 async function getAuthHeader() {
-  if (!accessToken) {
-    accessToken = await getAccessToken();
+  try {
+    // If no token or token is expired, get new one
+    if (!accessToken || !tokenExpiration || Date.now() >= tokenExpiration) {
+      await getAccessToken();
+    }
+    return { Authorization: `Bearer ${accessToken}` };
+  } catch (error) {
+    console.error('Auth Header Error:', error);
+    throw error;
   }
-  return { Authorization: `Bearer ${accessToken}` };
 }
 
 async function getMultiHotelOffers() {
@@ -53,20 +73,27 @@ async function getMultiHotelOffers() {
 }
 
 async function getHotelsByCity(cityCode = 'NYC') {
-  const BASE_URL = 'https://test.api.amadeus.com/v1';
   try {
     const headers = await getAuthHeader();
-
-    const response = await axios.get(`${BASE_URL}/reference-data/locations/hotels/by-city`, {
+    console.log('Making request for city:', cityCode);
+    
+    const response = await axios.get(`${BASE_URL_V1}/reference-data/locations/hotels/by-city`, {
       headers,
       params: {
-        cityCode: cityCode,
-      },
+        cityCode: cityCode
+      }
     });
+
+    console.log('Response status:', response.status);
+    console.log('Response data:', JSON.stringify(response.data, null, 2));
 
     return response.data;
   } catch (error) {
-    console.error('Error fetching data:', error.message);
+    console.error('API Error Details:', {
+      status: error.response?.status,
+      data: error.response?.data,
+      message: error.message
+    });
     throw error;
   }
 }

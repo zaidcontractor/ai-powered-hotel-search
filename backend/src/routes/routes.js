@@ -4,14 +4,39 @@ import apiservice from "../services/externalApiService.js";
 
 const router = Router();
 
-// Define a GET endpoint for retrieving the external API data
-router.get('/', async (req, res) => {
+// Update routes to include 'hotel' prefix
+router.get('/hotel', async (req, res) => {
   try {
     const data = await apiservice.getMultiHotelOffers();
     res.send(data);
   } catch (error) {
-    console.error('Error in GET /:', error);
+    console.error('Error in GET /hotel:', error);
     res.status(500).send("An error occurred while fetching data.");
+  }
+});
+
+router.get('/hotel/city/:cityCode', async (req, res) => {
+  try {
+    const { cityCode } = req.params;
+    console.log('Received request for city:', cityCode);
+    
+    if (!cityCode || cityCode.length !== 3) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid city code. Must be 3 letters (IATA code)'
+      });
+    }
+
+    const data = await apiservice.getHotelsByCity(cityCode.toUpperCase());
+    return res.json(data);
+  } catch (error) {
+    console.error('Route error:', error.response?.data || error);
+    return res.status(error.response?.status || 500).json({
+      success: false,
+      message: 'Error fetching hotels',
+      error: error.message,
+      details: error.response?.data
+    });
   }
 });
 
@@ -44,25 +69,6 @@ router.get('/test', async (req, res) => {
       message: 'Error fetching hotel data',
       error: error.message,
       details: error.response?.data || 'No additional details'
-    });
-  }
-});
-
-router.get('/city/:cityCode', async (req, res) => {
-  try {
-    const { cityCode } = req.params;
-    const data = await apiservice.getHotelsByCity(cityCode);
-    res.json({
-      success: true,
-      message: `Hotels found in ${cityCode}`,
-      data: data
-    });
-  } catch (error) {
-    console.error('Error in GET /city/:cityCode:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching hotels',
-      error: error.message
     });
   }
 });
