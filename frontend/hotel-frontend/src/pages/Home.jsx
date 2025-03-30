@@ -1,14 +1,24 @@
 import { useState } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
+import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
   const title = "SuiteSpot";
+  const navigate = useNavigate();
 
   const particlesInit = async (engine) => {
     await loadSlim(engine);
+  };
+
+  const handleSearch = () => {
+    if (prompt.trim() === "") {
+      alert("Please enter your travel preferences.");
+      return;
+    }
+    navigate("/results");
   };
 
   return (
@@ -58,6 +68,9 @@ function Home() {
             onChange={(e) => setPrompt(e.target.value)}
             required
           ></textarea>
+          <button className="search-button main-item" onClick={handleSearch}>
+            Find Hotels
+          </button>
         </div>
       </div>
     </>

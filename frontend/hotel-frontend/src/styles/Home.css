@@ -85,6 +85,30 @@ body {
 
 }
 
+.search-button {
+    font-family: "Gabarito", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+.search-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-black);
+    transform: scale(1.05);
+}
+
+.search-button:active {
+    transform: scale(0.95);
+}
+
 @media (max-width: 768px) {
     .main {
         padding: 20px;
