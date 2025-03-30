@@ -2,6 +2,7 @@
   "dependencies": {
     "@tsparticles/all": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
+    "firebase-admin": "^13.2.0",
     "react-router-dom": "^7.4.1",
     "react-tsparticles": "^2.12.2",
     "tsparticles": "^3.8.1",
