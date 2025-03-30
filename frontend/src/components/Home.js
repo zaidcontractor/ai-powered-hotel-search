@@ -7,7 +7,8 @@ function Home() {
   useEffect(() => {
     const checkBackend = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/health`);
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+        const response = await fetch(`${apiUrl}/api/health`);
         const data = await response.json();
         setBackendStatus(`Backend: ${data.status}, MongoDB: ${data.mongoStatus}`);
       } catch (err) {
