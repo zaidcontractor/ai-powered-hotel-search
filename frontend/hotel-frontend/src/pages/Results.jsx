@@ -20,7 +20,7 @@ function Home() {
           particles: {
             number: { value: 50 },
             shape: { type: "circle" },
-            opacity: { value:  0.5 },
+            opacity: { value: 0.5 },
             size: { value: 10 },
             move: { enable: true, speed: 1 },
             color: { value: "#FFC844" },
@@ -29,18 +29,16 @@ function Home() {
       />
       <div className="result-container">
         <h3>The Best Hotels for You!</h3>
-        <div className="main-flex">
-          <Result />
-          <Result />
-          <Result />
-          <Result />
-          <Result />
-          <Result />
-          <Result />
-          <Result />
-          <Result />
-          <Result />
-        </div>
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
       </div>
     </>
   );
