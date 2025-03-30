@@ -6,6 +6,8 @@ body {
     background-color: var(--color-black);
     color: var(--color-black);
     padding: 20px;
+    overflow-x: visible;
+    overflow-y: auto;
 }
 
 h3{
