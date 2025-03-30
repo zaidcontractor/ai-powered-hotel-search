@@ -6,9 +6,10 @@ body {
     background-color: var(--color-black);
     color: var(--color-black);
     padding: 20px;
-    overflow-x: visible;
+    overflow-x: hidden;
     overflow-y: auto;
 }
+
 
 h3{
     color: var(--color-primary);
